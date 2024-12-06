@@ -1,35 +1,96 @@
-# Juego de Batalla por Turnos - Estilo Pokémon
+### Documentación Técnica del Proyecto de Juego de Batalla
 
-## Idea principal
+## 1. Detalle de los Módulos Desarrollados
 
-La idea principal del juego es una batalla por turnos en la que el jugador enfrentará a un enemigo controlado por una IA. La IA del enemigo está diseñada para analizar patrones en las acciones del jugador, adaptándose y ajustando sus estrategias para derrotarlo. Durante la batalla, tanto el jugador como el enemigo pueden realizar ataques básicos, defensas, habilidades especiales y usar objetos para mejorar sus habilidades o recuperarse.
+# 1.1 Módulo: Player (Jugador)
+Descripción: Representa al jugador en el juego, incluyendo atributos básicos como puntos de vida (HP), puntos de ataque, defensa y la capacidad de usar habilidades especiales.
+Métodos Principales:
+attack(): Realiza un ataque básico contra el enemigo.
+useSpecialAbility(): Activa una habilidad especial, consumiendo puntos o turnos específicos.
+defend(): Aumenta temporalmente la defensa contra el próximo ataque enemigo.
+transform(): Cambia al estado transformado del jugador, aumentando sus estadísticas.
+Detalles Técnicos: Este módulo utiliza encapsulamiento para mantener la integridad de los datos del jugador.
 
-## Desarrollo del juego
+# 1.2 Módulo: Enemy (Enemigo)
+Descripción: Define las características y comportamientos del enemigo que el jugador enfrentará.
+Métodos Principales:
+attack(): Realiza un ataque básico contra el jugador.
+useDepletionSpell(): Reduce temporalmente las estadísticas del jugador.
+Detalles Técnicos: La lógica del enemigo se adapta dinámicamente a la situación, utilizando probabilidad para decidir sus acciones.
 
-El desarrollo se centra en una estructura de clases bien definida, que facilita el manejo de personajes y sus estadísticas. La clase base Character define los atributos y comportamientos básicos compartidos por el jugador y el enemigo, como el manejo de daño y defensa. Las clases Player y Enemy heredan de Character y expanden sus funcionalidades específicas. Para mejorar la experiencia de juego, la IA del enemigo utiliza un conjunto de condiciones que le permiten reaccionar de manera más inteligente frente al jugador, lo que agrega un nivel de desafío y hace la partida más inmersiva.
+# 1.3 Módulo: Item (Ítems)
+Descripción: Representa objetos que el jugador puede recolectar y usar durante las batallas para mejorar su rendimiento.
+Atributos:
+type: Tipo de ítem (ataque, defensa, salud).
+value: Valor numérico del efecto del ítem.
+Métodos Principales:
+generateRandomItem(): Genera ítems aleatorios para las batallas.
+Detalles Técnicos: Se utilizó una enumeración (enum) para definir los tipos de ítems.
+# 1.4 Módulo: BattleController (Controlador de Batallas)
+Descripción: Gestiona la lógica de las batallas, incluyendo los turnos, las acciones permitidas y las condiciones de victoria/derrota.
+Métodos Principales:
+startBattle(): Inicializa la batalla entre el jugador y el enemigo.
+processTurn(): Controla las acciones de cada turno.
+calculateDamage(): Determina el daño infligido basado en las estadísticas actuales.
+Detalles Técnicos: Se implementó un bucle principal que gestiona los turnos hasta que se cumple una condición de finalización (ganar/perder).
+# 1.5 Módulo: GameController (Controlador del Juego)
+Descripción: Gestiona el flujo principal del juego, desde la selección del personaje hasta el registro de puntuaciones.
+Métodos Principales:
+selectCharacter(): Permite al jugador elegir un personaje.
+manageGameFlow(): Controla las transiciones entre las diferentes fases del juego (inicio, batalla, final).
+endGame(): Finaliza el juego y registra la puntuación.
+Detalles Técnicos: Este módulo integra todos los demás módulos y sirve como punto de entrada para el programa.
 
-## Clases Principales
+# 1.6 Módulo: GameRecordManager (Gestor de Puntuaciones)
+Descripción: Maneja el almacenamiento y recuperación de las puntuaciones de los jugadores.
+Métodos Principales:
+saveScore(): Guarda la puntuación del jugador en un archivo.
+getTopScores(): Recupera las mejores puntuaciones registradas.
+Detalles Técnicos: Se empleó la clase Files del paquete java.nio.file para operaciones con archivos, asegurando compatibilidad y eficiencia.
 
-### Class Character
+## 2. Tecnologías Empleadas
 
-Character es la clase base del juego que contiene los atributos comunes de los personajes: nombre, puntos de vida, ataque, defensa, ataque especial y defensa especial. Además, se encargan métodos como recibir y aplicar daño, y curarse. Character también aplica una lógica de defensa que reduce el daño recibido basándose en la estadística de defensa del personaje y un factor aleatorio, lo que añade variabilidad a las batallas.
+Lenguaje de Programación: Java.
+Justificación: Java ofrece portabilidad, es orientado a objetos y tiene un ecosistema robusto para desarrollar juegos simples.
+Entorno de Desarrollo: Visual Studio Code.
+Justificación: Es un editor de código ligero, extensible y con soporte para depuración, integración con Git, y herramientas específicas para Java mediante extensiones como Language Support for Java y Debugger for Java.
+Arquitectura del Software: Modelo-Vista-Controlador (MVC).
+Justificación: MVC permite separar las responsabilidades del juego, facilitando la escalabilidad y el mantenimiento del código. En este caso:
+Modelo: Incluye la lógica de negocio, como los módulos Player, Enemy, y Item.
+Vista: Representa la interfaz del juego que interactúa con el usuario.
+Controlador: Maneja la interacción entre el modelo y la vista, como BattleController y GameController.
+Bibliotecas Utilizadas:
+java.util.Random: Para generar elementos aleatorios como ítems y decisiones del enemigo.
+java.nio.file.Files: Para manejo de archivos de puntuaciones.
+Control de Versiones: Git.
+Justificación: Permite un seguimiento detallado de los cambios y facilita la colaboración entre desarrolladores.
+Estrategias de Diseño:
+Encapsulación: Todos los atributos son privados, con acceso mediante getters y setters.
+Modularidad: Cada módulo tiene una responsabilidad específica, lo que facilita la mantenibilidad.
 
-### Class Player
+## 3. Justificación de Decisiones Técnicas
 
-Player representa al jugador y extiende Character, permitiéndole realizar acciones como el ataque básico, el ataque especial y la defensa. También lleva un registro de las últimas acciones tomadas, lo que le permite a la IA del enemigo analizar los patrones de juego. Además, el jugador puede obtener objetos aleatorios durante la batalla que mejoran sus estadísticas o recuperan puntos de vida, añadiendo un elemento estratégico a la partida.
+# 3.1 Uso de Orientación a Objetos
+Se optó por un diseño orientado a objetos para:
 
-### Class Enemy
+Garantizar la reutilización del código.
+Facilitar la extensión del juego mediante la adición de nuevos personajes, enemigos o ítems.
+Mejorar la legibilidad y el mantenimiento del código.
+# 3.2 Selección del Lenguaje
+Java fue elegido por su portabilidad y la facilidad para implementar estructuras modulares, así como por sus capacidades para manejar errores de manera robusta.
 
-Enemy es la clase que representa al enemigo y también hereda de Character. La IA del enemigo selecciona acciones basadas en condiciones, como el estado de salud del enemigo y los patrones de ataque del jugador. Tiene capacidad para realizar ataques básicos, ataques especiales, defenderse o curarse, dependiendo de la situación, y se ajusta dinámicamente al comportamiento del jugador, ofreciendo un reto adicional en cada batalla. Además, se ha mejorado la lógica de selección de ataques especiales y defensas para minimizar errores en las acciones realizadas.
+# 3.3 Manejo de Archivos
+Se utilizó java.nio.file.Files en lugar de java.io debido a su rendimiento mejorado y soporte para operaciones modernas, como el manejo de flujos y directorios.
 
-### Class Item
+# 3.4 Gestión de la Lógica del Juego
+La lógica del juego se separó en varios controladores (BattleController, GameController) para garantizar un flujo bien estructurado y evitar dependencias innecesarias entre clases.
 
-Item representa los objetos especiales que el jugador puede encontrar durante la batalla. Estos objetos pueden aumentar el ataque, defensa o curar puntos de vida al jugador. Cada tipo de objeto tiene un efecto específico y potencia, ofreciendo una ventaja estratégica temporal.
+# 3.5 Arquitectura MVC
+Se adoptó la arquitectura Modelo-Vista-Controlador para separar las responsabilidades en tres capas bien definidas:
 
-### Class BattleSystem
+Modelo: Gestión de datos y lógica de negocio.
+Vista: Representación de la salida del juego.
+Controlador: Intermediario entre el modelo y la vista.
 
-BattleSystem organiza la lógica del combate entre el jugador y el enemigo. Gestiona los turnos, muestra las opciones de acción para el jugador y llama a los métodos correspondientes en las clases Player y Enemy. Además, genera objetos aleatorios y controla el flujo de la batalla hasta que el jugador o el enemigo pierdan todos sus puntos de vida. Se han implementado mejoras en la lógica para asegurar que las opciones de ataque especial y defensa sean correctamente seleccionadas y ejecutadas.
-
-## Conclusión
-
-Este juego de batalla por turnos ofrece una experiencia dinámica y estratégica donde cada decisión cuenta. El sistema de inteligencia artificial del enemigo presenta un desafío al jugador al adaptarse a sus patrones, haciendo cada partida única. La implementación modular facilita futuras expansiones y ajustes en las reglas de combate y en las acciones posibles, con lo cual el juego puede evolucionar para ofrecer aún más opciones y profundidad en sus mecánicas. Esta estructura también es ideal para aprender sobre programación orientada a objetos en Java, ofreciendo un balance entre entretenimiento y aprendizaje de conceptos clave en desarrollo de videojuegos.
+# 3.6 Decisiones sobre Interactividad
+Se priorizó una experiencia de usuario fluida mediante un menú interactivo, ofreciendo retroalimentación clara sobre las decisiones del jugador y el estado del juego.
