@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameRecordManager {
-    private static final String RECORDS_FILE = "game_records.csv";
+    private static final String RECORDS_FILE = "records/game_records.csv";
     private static final String CSV_HEADER = "PlayerName,Points,DateTime";
 
     public void savePlayerRecord(PlayerRecord record) {
