@@ -47,6 +47,7 @@ public class GameRecordManager {
                 if (parts.length == 3) {
                     String playerName = parts[0];
                     int points = Integer.parseInt(parts[1]);
+                    @SuppressWarnings("unused")
                     LocalDateTime dateTime = LocalDateTime.parse(parts[2]);
                     
                     PlayerRecord record = new PlayerRecord(playerName, points);
