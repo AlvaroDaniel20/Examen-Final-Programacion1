@@ -50,23 +50,23 @@ Detalles Técnicos: Se empleó la clase Files del paquete java.nio.file para ope
 
 ## 2. Tecnologías Empleadas
 
-Lenguaje de Programación: Java.
-Justificación: Java ofrece portabilidad, es orientado a objetos y tiene un ecosistema robusto para desarrollar juegos simples.
-Entorno de Desarrollo: Visual Studio Code.
-Justificación: Es un editor de código ligero, extensible y con soporte para depuración, integración con Git, y herramientas específicas para Java mediante extensiones como Language Support for Java y Debugger for Java.
-Arquitectura del Software: Modelo-Vista-Controlador (MVC).
-Justificación: MVC permite separar las responsabilidades del juego, facilitando la escalabilidad y el mantenimiento del código. En este caso:
-Modelo: Incluye la lógica de negocio, como los módulos Player, Enemy, y Item.
-Vista: Representa la interfaz del juego que interactúa con el usuario.
-Controlador: Maneja la interacción entre el modelo y la vista, como BattleController y GameController.
-Bibliotecas Utilizadas:
-java.util.Random: Para generar elementos aleatorios como ítems y decisiones del enemigo.
-java.nio.file.Files: Para manejo de archivos de puntuaciones.
-Control de Versiones: Git.
-Justificación: Permite un seguimiento detallado de los cambios y facilita la colaboración entre desarrolladores.
-Estrategias de Diseño:
-Encapsulación: Todos los atributos son privados, con acceso mediante getters y setters.
-Modularidad: Cada módulo tiene una responsabilidad específica, lo que facilita la mantenibilidad.
+- Lenguaje de Programación: Java.
+ Justificación: Java ofrece portabilidad, es orientado a objetos y tiene un ecosistema robusto para desarrollar juegos simples.
+- Entorno de Desarrollo: Visual Studio Code.
+ Justificación: Es un editor de código ligero, extensible y con soporte para depuración, integración con Git, y herramientas específicas para Java mediante extensiones como Language Support for Java y Debugger for Java.
+- Arquitectura del Software: Modelo-Vista-Controlador (MVC).
+ Justificación: MVC permite separar las responsabilidades del juego, facilitando la escalabilidad y el mantenimiento del código. En este caso:
+- Modelo: Incluye la lógica de negocio, como los módulos Player, Enemy, y Item.
+- Vista: Representa la interfaz del juego que interactúa con el usuario.
+- Controlador: Maneja la interacción entre el modelo y la vista, como BattleController y GameController.
+- Bibliotecas Utilizadas:
+ java.util.Random: Para generar elementos aleatorios como ítems y decisiones del enemigo.
+ java.nio.file.Files: Para manejo de archivos de puntuaciones.
+- Control de Versiones: Git.
+ Justificación: Permite un seguimiento detallado de los cambios y facilita la colaboración entre desarrolladores.
+- Estrategias de Diseño:
+- Encapsulación: Todos los atributos son privados, con acceso mediante getters y setters.
+- Modularidad: Cada módulo tiene una responsabilidad específica, lo que facilita la mantenibilidad.
 
 ## 3. Justificación de Decisiones Técnicas
 
