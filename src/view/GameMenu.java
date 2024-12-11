@@ -1,5 +1,6 @@
 package view;
 
+import java.util.Map;
 
 public class GameMenu {
     public void displayMainMenu() {
